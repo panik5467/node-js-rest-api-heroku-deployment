@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'))
 
 app.get("/", (req, res) => {
   res.send(200, '<H1>Hello, nodejs server example</H1>');
