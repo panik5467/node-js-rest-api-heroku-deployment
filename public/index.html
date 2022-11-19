@@ -3,11 +3,57 @@
   
 <head>
     <meta charset="utf-8">
-    <title>Calculator</title>
+    <title>NodeJS demo</title>
 </head>
   
-<body>
-    <h1>Simple Calculator.</h1>
+<body style="margin: 4em 10em">
+
+<h1>Simple NodeJs Server.</h1>
+  
+<img class="img" />
+<img class="img" />
+<img class="img" />
+<img class="img" />
+<img class="img" />
+
+<script>
+
+//https://picsum.photos/200/300
+
+let index=0;
+const myImage = document.querySelectorAll('.img');
+
+const getPhoto = () => {
+fetch('https://picsum.photos/1000/400.webp?grayscale')
+.then(function(response) {
+  return response.blob();
+})
+.then(function(myBlob) {
+  const objectURL = URL.createObjectURL(myBlob);
+  myImage[index%5].src = objectURL;
+  //++index;
+});
+}
+
+function start() {
+
+    setTimeout(function() {
+        console.log('Hello My Infinite Loop Execution');
+		getPhoto();
+
+      // Again
+      start();
+
+      // Every 3 sec
+    }, 2000);
+}
+
+// Begins
+start();
+
+</script>
+  
+<!--
     <form action="/api" method="post">
         <input type="text" name="num1" 
             placeholder="First Number">
@@ -17,7 +63,7 @@
         <button type="submit" name="submit">
             calculator
         </button>
-    </form>
+    </form> -->
 </body>
   
 </html>
