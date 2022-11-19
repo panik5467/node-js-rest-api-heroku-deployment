@@ -11,7 +11,7 @@ app.get("/users", (req, res) => {
 app.get("/users/:id", (req, res) => {
   if (isNaN(req.params.id)) {
     res.send(400, {
-      message: "İşlenemeyen veri..."
+      message: "Error: invalid Format.."
     });
   } else {
     const user = db.find(u => u.id == req.params.id); // undefined
@@ -19,7 +19,7 @@ app.get("/users/:id", (req, res) => {
       res.send(200, user);
     } else {
       res.send(404, {
-        message: "Kullanıcı bulunamadı.."
+        message: "User inconnu."
       });
     }
   }
@@ -38,7 +38,7 @@ app.post("/users", (req, res) => {
 app.patch("/users/:id", (req, res) => {
   if (isNaN(req.params.id)) {
     res.send(400, {
-      message: "İşlenemeyen veri..."
+      message: "Error: invalid Format."
     });
   } else {
     const user = db.find(u => u.id == req.params.id); // undefined
@@ -52,7 +52,7 @@ app.patch("/users/:id", (req, res) => {
       res.send(200, user);
     } else {
       res.send(404, {
-        message: "Kullanıcı bulunamadı.."
+        message: "User non trouvé.."
       });
     }
   }
@@ -60,23 +60,23 @@ app.patch("/users/:id", (req, res) => {
 app.delete("/users/:id", (req, res) => {
   if (isNaN(req.params.id)) {
     res.send(400, {
-      message: "İşlenemeyen veri..."
+      message: "Error: invalid Format ..."
     });
   } else {
     const userIndex = db.findIndex(u => u.id == req.params.id); // undefined
     if (userIndex > -1) {
       db.splice(userIndex, 1);
       res.send(201, {
-        message: "Kullanıcı Silindi.."
+        message: "User inconnu.."
       });
     } else {
       res.send(404, {
-        message: "Kullanıcı bulunamadı.."
+        message: "User non trouvé.."
       });
     }
   }
 });
 
 app.listen(process.env.PORT || 3000, () => {
-  console.log("Sunucu ayaktadır.. Çalışıyor...");
+  console.log("Node server running on port 3000 ...");
 });
