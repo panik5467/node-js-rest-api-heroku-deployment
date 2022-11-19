@@ -1,10 +1,11 @@
 const app = require("express")();
 const db = require("./db.json");
 const bodyParser = require("body-parser");
+const path = require('path');
 
+app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'))
 
 //app.get("/", (req, res) => {
 //  res.send(200, '<H1>Hello, nodejs server example</H1>');
