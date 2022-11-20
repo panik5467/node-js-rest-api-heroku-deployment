@@ -103,7 +103,7 @@
     <script type="text/javascript">
         function TasksViewModel() {
             var self = this;
-            self.tasksURI = '/users'; //'http://localhost:5000/todo/api/v1.0/tasks';
+            self.tasksURI = '/api/users'; //'http://localhost:5000/todo/api/v1.0/tasks';
             self.tasks = ko.observableArray();
 
             self.ajax = function(uri, method, data) {
