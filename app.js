@@ -5,9 +5,12 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
+const pub = __dirname + '/public';
+app.use('/', express.static(pub));
+
+/**app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
-});
+});**/
 
 app.get("/users", (req, res) => {
   res.send(200, db);
