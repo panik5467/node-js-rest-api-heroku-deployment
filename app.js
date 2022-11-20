@@ -8,14 +8,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const pub = __dirname + '/public';
 app.use('/', express.static(pub));
 
-/**app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/index.html");
-});**/
+app.get("/index.html", function(req, res) { 
+  res.sendFile(pub + '/index.html');
+});
 
-app.get("/users", (req, res) => {
+app.get("/restclient.html", function(req, res) { 
+  res.sendFile(pub + '/restclient.html');
+});
+
+app.get("/api/users", (req, res) => {
   res.send(200, db);
 });
-app.get("/users/:id", (req, res) => {
+
+app.get("/api/users/:id", (req, res) => {
   if (isNaN(req.params.id)) {
     res.send(400, {
       message: "Error: invalid Format.."
@@ -31,7 +36,7 @@ app.get("/users/:id", (req, res) => {
     }
   }
 });
-app.post("/users", (req, res) => {
+app.post("/api/users", (req, res) => {
   const willSaveData = {
     id: new Date().getTime(),
     full_name: req.body.full_name,
@@ -42,7 +47,7 @@ app.post("/users", (req, res) => {
   db.push(willSaveData);
   res.send(willSaveData);
 });
-app.patch("/users/:id", (req, res) => {
+app.patch("/api/users/:id", (req, res) => {
   if (isNaN(req.params.id)) {
     res.send(400, {
       message: "Error: invalid Format."
@@ -64,7 +69,7 @@ app.patch("/users/:id", (req, res) => {
     }
   }
 });
-app.delete("/users/:id", (req, res) => {
+app.delete("/api/users/:id", (req, res) => {
   if (isNaN(req.params.id)) {
     res.send(400, {
       message: "Error: invalid Format ..."
